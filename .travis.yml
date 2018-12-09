@@ -10,7 +10,7 @@ script:
 
 after_success:
   - docker build -t mir23cr/multi-client ./client
-  - docker build -t mir23cr/multi-nginx  ./ngnix 
+  - docker build -t mir23cr/multi-nginx  ./nginx 
   - docker build -t mir23cr/multi-server ./server
   - docker build -t mir23cr/multi-worker ./worker
   # Login in Docker CLI
