@@ -9,7 +9,7 @@ script:
   - docker run mir23cr/react-test npm run test -- --coverage
 
 after_success:
-  - docker build -t mir23cr/multi-client ./client
+  - docker build -t mir23cr/multi-client:v2 ./client
   - docker build -t mir23cr/multi-nginx  ./nginx 
   - docker build -t mir23cr/multi-server ./server
   - docker build -t mir23cr/multi-worker ./worker
@@ -21,15 +21,15 @@ after_success:
   - docker push mir23cr/multi-server
   - docker push mir23cr/multi-worker
 
-deploy:
-  provider: elasticbeanstalk
-  region: us-east-1
-  app: multi-docker
-  env: MultiDocker-env
-  bucket_name: elasticbeanstalk-us-east-1-393275633865
-  bucket_path: docker-multi
-  on:
-    branch: master
-  access_key_id: $AWS_ACCESS_KEY
-  secret_access_key:
-    secure: $AWS_SECRET_KEY
+#deploy:
+#  provider: elasticbeanstalk
+#  region: us-east-1
+#  app: multi-docker
+#  env: MultiDocker-env
+#  bucket_name: elasticbeanstalk-us-east-1-393275633865
+#  bucket_path: docker-multi
+#  on:
+#    branch: master
+#  access_key_id: $AWS_ACCESS_KEY
+#  secret_access_key:
+#    secure: $AWS_SECRET_KEY
